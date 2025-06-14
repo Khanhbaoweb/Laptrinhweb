@@ -10,25 +10,22 @@ import uuid
 import logging
 from sqlalchemy import func, cast, Numeric
 
-# BẮT ĐẦU PHẦN CODE CẦN DÁN VÀO ĐÂY
+# BẮT ĐẦU PHẦN CODE MỚI CẦN DÁN VÀO ĐÂY SAU CÁC DÒNG IMPORT KHÁC
 import sys
 # Đảm bảo thư mục cha của 'backend' được thêm vào PYTHONPATH
 # Điều này giúp Python tìm thấy 'backend' như một top-level package
-# Sử dụng os.path.dirname(__file__) để lấy thư mục hiện tại (backend/)
-# sau đó os.path.abspath(os.path.join(..., '..')) để đi lên một cấp (thư mục gốc của dự án)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-# KẾT THÚC PHẦN CODE CẦN DÁN VÀO ĐÂY
+# KẾT THÚC PHẦN CODE MỚI CẦN DÁN VÀO ĐÂY
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = Flask(__name__, static_folder='static', static_url_path='')
+# DÒNG SAU ĐÂY CŨNG CẦN ĐƯỢC THAY ĐỔI
+# Thay thế dòng này: app.config.from_object('config.Config')
+# BẰNG DÒNG NÀY:
+app.config.from_object('backend.config.Config')
 
-from backend.config import Config # Import tuyệt đối
-app.config.from_object(Config) # Sử dụng trực tiếp class Config
-app = Flask(__name__, static_folder='static', static_url_path='')
-from .config import Config # Import Config class từ module config trong cùng package
-app.config.from_object(Config) # Sử dụng trực tiếp class Config
-# Đã cải thiện: Đảm bảo SECRET_KEY được lấy từ biến môi trường
+# ... (phần còn lại của app.py giữ nguyên) ...
 app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'SUPER_SECRET_DEV_KEY_DO_NOT_USE_IN_PROD_12345')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=8)
 
