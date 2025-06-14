@@ -13,7 +13,8 @@ from sqlalchemy import func, cast, Numeric
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = Flask(__name__, static_folder='static', static_url_path='')
-app.config.from_object('config.Config')
+from .config import Config # Import Config class từ module config trong cùng package
+app.config.from_object(Config) # Sử dụng trực tiếp class Config
 # Đã cải thiện: Đảm bảo SECRET_KEY được lấy từ biến môi trường
 app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'SUPER_SECRET_DEV_KEY_DO_NOT_USE_IN_PROD_12345')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=8)
