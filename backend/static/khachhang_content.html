@@ -1,0 +1,70 @@
+<section id="quan-ly-khach-hang" class="p-4 bg-white rounded shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0 text-primary">Danh Sách Khách Hàng</h2>
+        <button id="add-customer-btn-page" class="btn btn-success"><i class="bi bi-plus-circle me-2"></i>Thêm Khách Hàng</button>
+    </div>
+    <div id="thong-bao-khachhang" class="thong-bao mt-4"></div>
+    <div class="table-responsive">
+        <table id="danh-sach-khachhang" class="table table-striped table-hover table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Tên Khách Hàng</th>
+                    <th>Người Liên Hệ</th>
+                    <th>Điện Thoại</th>
+                    <th>Email</th>
+                    <th>Địa Chỉ</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+</section>
+
+<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customerModalLabel">Thêm/Sửa Khách Hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="customerForm">
+                    <input type="hidden" id="customerIdInputHidden">
+                    <div class="mb-3">
+                        <label for="customerNameInput" class="form-label">Tên Khách Hàng: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="customerNameInput" required>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="customerContactPersonInput" class="form-label">Người Liên Hệ:</label>
+                            <input type="text" class="form-control" id="customerContactPersonInput">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="customerPhoneInput" class="form-label">Điện Thoại:</label>
+                            <input type="tel" class="form-control" id="customerPhoneInput">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="customerEmailInput" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="customerEmailInput">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="customerAddressInput" class="form-label">Địa Chỉ:</label>
+                        <textarea class="form-control" id="customerAddressInput" rows="3"></textarea>
+                    </div>
+                    
+                    <div id="customer-form-error" class="text-danger mt-2 mb-3"></div> </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="submit" form="customerForm" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

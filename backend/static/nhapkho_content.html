@@ -1,0 +1,33 @@
+<section id="nhap-kho" class="p-4 bg-white rounded shadow-sm">
+    <h2 class="mb-4 text-primary">Nhập Hàng Vào Kho / Cập Nhật Sản Phẩm</h2>
+    <p class="text-muted">Nếu Mã Sản Phẩm đã tồn tại, hệ thống sẽ cộng dồn số lượng và cập nhật thông tin. Nếu chưa, sản phẩm mới sẽ được tạo.</p>
+    <form id="form-nhap-kho" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="nhap-ma-san-pham" class="form-label">Mã Sản Phẩm: <span class="text-danger">*</span></label>
+                <input type="text" id="nhap-ma-san-pham" name="code" class="form-control" required>
+                </div>
+            <div class="col-md-6 mb-3">
+                <label for="nhap-ten-san-pham" class="form-label">Tên Sản Phẩm: <span class="text-danger">*</span></label>
+                <input type="text" id="nhap-ten-san-pham" name="name" class="form-control" required>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="nhap-so-luong" class="form-label">Số Lượng Nhập: <span class="text-danger">*</span></label>
+                <input type="number" id="nhap-so-luong" name="quantity" value="1" min="1" class="form-control" required>
+                </div>
+            <div class="col-md-6 mb-3">
+                <label for="nhap-gia-san-pham" class="form-label">Giá Nhập/Sản Phẩm (VNĐ): <span class="text-danger">*</span></label>
+                <input type="number" id="nhap-gia-san-pham" name="price" value="0" min="0" step="1000" class="form-control" required>
+                </div>
+        </div>
+        <div class="mb-3">
+            <label for="nhap-hinh-anh-san-pham" class="form-label">Hình Ảnh (Tùy chọn):</label>
+            <input type="file" id="nhap-hinh-anh-san-pham" name="image" class="form-control" accept="image/jpeg,image/png,image/gif">
+            <small class="form-text text-muted">Kích thước tối đa 16MB. Chỉ chấp nhận JPEG, PNG, GIF.</small>
+        </div>
+        <div id="nhap-kho-form-error" class="text-danger mt-2 mb-3"></div> <button type="submit" class="btn btn-primary mt-3"><i class="bi bi-box-arrow-in-down me-2"></i>Nhập Kho</button>
+    </form>
+    <div id="thong-bao-nhap-kho" class="thong-bao mt-4"></div>
+</section>

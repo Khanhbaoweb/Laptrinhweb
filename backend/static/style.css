@@ -1,0 +1,396 @@
+/* style.css */
+/* Tệp này chứa tất cả các định dạng CSS cho ứng dụng quản lý kho hàng. */
+/* Nó bao gồm các style ban đầu của bạn và các bổ sung mới cho nút và thông báo. */
+
+body {
+    font-family: 'Inter', sans-serif; /* Sử dụng font Inter hoặc sans-serif */
+    margin: 0;
+    background-color: #f8f9fa; /* Màu nền nhẹ của Bootstrap */
+    color: #343a40; /* Màu chữ mặc định của Bootstrap */
+    min-height: 100vh; /* Đảm bảo body có chiều cao tối thiểu */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header - Thanh điều hướng trên cùng */
+.navbar {
+    background-color: #212529 !important; /* Màu nền đậm hơn cho navbar */
+    color: white;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Đổ bóng mạnh hơn */
+    z-index: 1030;
+    position: sticky;
+    top: 0;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 0.05em; /* Tăng khoảng cách chữ */
+}
+
+.navbar-brand:hover {
+    color: #e9ecef !important;
+}
+
+/* Sidebar - Thanh điều hướng bên trái */
+.sidebar {
+    height: 100vh;
+    width: 250px; /* Mặc định cho PC */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #212529; /* Màu nền giống navbar */
+    padding-top: 70px; /* Điều chỉnh padding cho chiều cao navbar */
+    color: white;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2); /* Đổ bóng mạnh hơn */
+    z-index: 1020;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out; /* Thêm transition cho width */
+}
+
+/* Điều chỉnh responsive cho sidebar và main-content */
+
+/* Trên màn hình nhỏ (dưới 992px - breakpoint 'lg') */
+@media (max-width: 991.98px) {
+    .sidebar {
+        width: 0; /* Ẩn sidebar theo mặc định trên mobile */
+        transform: translateX(-100%); /* Dịch chuyển ra ngoài màn hình */
+    }
+    .main-content {
+        margin-left: 0; /* Đảm bảo nội dung chính không bị đẩy */
+    }
+    /* Có thể thêm overlay khi sidebar mở trên mobile nếu muốn */
+    /* .sidebar.show::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 1010;
+    } */
+}
+
+/* Trên màn hình lớn (lg trở lên - từ 992px trở lên) */
+@media (min-width: 992px) { /* breakpoint 'lg' của Bootstrap */
+    .sidebar {
+        width: 250px !important; /* Đảm bảo sidebar luôn hiển thị trên PC */
+        transform: translateX(0%) !important; /* Đảm bảo nó không bị dịch chuyển */
+        /* Bỏ các quy tắc position: fixed, height: 100vh, overflow-y: auto nếu chúng gây xung đột
+           với hành vi mong muốn khi sidebar được toggle trên PC.
+           Tuy nhiên, với setup hiện tại của bạn, chúng thường vẫn cần thiết. */
+    }
+    .main-content {
+        margin-left: 250px; /* Đẩy nội dung chính sang phải */
+    }
+    /* Đảm bảo sidebar không bị ẩn bởi class .collapse trên PC */
+    /* Khi sidebar có class 'show' trên PC, nó sẽ hiển thị.
+       Khi không có class 'show' trên PC, nó sẽ bị ẩn.
+       Đây là hành vi mong muốn nếu bạn muốn nút menu toggle sidebar trên PC. */
+    
+    /* Khi sidebar hiển thị trên PC */
+    .sidebar.collapse.show {
+        width: 250px !important; /* Giữ nguyên 250px */
+        transform: translateX(0%) !important;
+    }
+    /* Đảm bảo .collapse:not(.show) không ẩn sidebar trên PC */
+    .sidebar.collapse:not(.show) {
+        display: block; /* Ghi đè display: none của .collapse */
+        width: 250px !important;
+        transform: translateX(0%) !important;
+    }
+}
+
+
+.sidebar-heading {
+    font-size: 1.1rem;
+    padding: 1rem;
+    color: #adb5bd;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Border tinh tế hơn */
+    margin-bottom: 0.5rem;
+}
+
+.list-group-item-action {
+    display: flex;
+    align-items: center;
+    padding: 0.85rem 1.25rem;
+    color: #adb5bd;
+    text-decoration: none;
+    transition: all 0.2s ease; /* Hiệu ứng chuyển động mượt */
+    border-radius: 0.3rem; /* Bo góc cho các mục danh sách */
+    margin: 0.2rem 0.5rem;
+}
+
+.list-group-item-action:hover {
+    color: white;
+    background-color: #343a40; /* Màu tối hơn một chút khi hover */
+    transform: translateX(3px); /* Hiệu ứng dịch chuyển nhỏ khi hover */
+}
+
+.list-group-item-action.active {
+    color: white;
+    background-color: #007bff; /* Màu xanh chính */
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3); /* Đổ bóng cho mục đang hoạt động */
+}
+
+.list-group-item-action i {
+    font-size: 1.1rem;
+    margin-right: 0.75rem;
+}
+
+
+/* Các phần dạng thẻ (Card-like sections) */
+section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05); /* Đổ bóng mềm hơn */
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: #007bff; /* Màu xanh chính cho tiêu đề phần */
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+/* Thống kê Cards */
+.thong-ke .card {
+    border: none; /* Bỏ border mặc định của card */
+    transition: transform 0.2s ease-in-out; /* Hiệu ứng chuyển động */
+}
+
+.thong-ke .card:hover {
+    transform: translateY(-5px); /* Hiệu ứng nâng lên khi hover */
+}
+
+.thong-ke .card-body {
+    padding: 1.5rem;
+}
+
+.thong-ke .card-title {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.thong-ke .card-text {
+    font-size: 2.8rem; /* Số lớn hơn */
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+/* Table styling */
+.table {
+    border-radius: 0.5rem;
+    overflow: hidden; /* Đảm bảo bo góc áp dụng cho bảng */
+}
+
+.table thead th {
+    background-color: #e9ecef;
+    color: #495057;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:hover {
+    background-color: #e2e6ea;
+}
+
+/* Form styling */
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-control, .form-select {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.75rem 1rem;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075); /* Đổ bóng bên trong nhẹ */
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+    border-radius: 0.25rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    transform: translateY(-1px);
+}
+
+/* Nút nhỏ trong bảng */
+.btn-sm {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+/* Thông báo */
+.thong-bao {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.thong-bao.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.thong-bao.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Footer */
+.footer {
+    background-color: #212529; /* Khớp với navbar và sidebar */
+    color: #adb5bd;
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: auto; /* Đẩy footer xuống cuối */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modal styling */
+.modal-content {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: white;
+    border-bottom: none;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 1rem 1.5rem;
+}
+
+/* Bảng cuộn ngang trên màn hình nhỏ */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Cho phép cuộn mượt trên iOS */
+}
+
+/* Cải tiến cho các thẻ thống kê trên mobile */
+@media (max-width: 768px) {
+    .thong-ke {
+        flex-direction: column; /* Xếp chồng các thẻ thống kê */
+    }
+    .thong-ke .col-md-6, .thong-ke .col-lg-3 {
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+    }
+}
+
+/* Điều chỉnh responsive cho sidebar và main-content */
+
+/* Mặc định, sidebar ẩn trên mobile (do Bootstrap .collapse)
+   và hiển thị trên PC (do .show và @media) */
+.sidebar {
+    width: 0; /* Ẩn sidebar theo mặc định */
+    transform: translateX(-100%); /* Dịch chuyển ra ngoài màn hình */
+}
+
+.sidebar.show {
+    width: 250px;
+    transform: translateX(0%); /* Dịch chuyển vào màn hình */
+}
+
+/* Main Content mặc định không có margin-left */
+.main-content {
+    margin-left: 0; 
+    transition: margin-left 0.3s ease; /* Thêm transition cho margin-left */
+    padding: 70px 1rem 1rem 1rem; /* Đảm bảo nội dung không bị che bởi navbar */
+}
+
+/* Trên màn hình lớn (lg trở lên), sidebar luôn hiển thị và main-content có margin */
+@media (min-width: 992px) { /* breakpoint 'lg' của Bootstrap */
+    .sidebar {
+        width: 250px !important; /* Đảm bảo sidebar luôn hiển thị trên PC */
+        transform: translateX(0%) !important; /* Đảm bảo nó không bị dịch chuyển */
+    }
+    .main-content {
+        margin-left: 250px; /* Đẩy nội dung chính sang phải */
+        padding: 70px 1rem 1rem 1rem; /* Giữ padding này */
+    }
+    /* Đảm bảo sidebar không bị ẩn bởi class .collapse trên PC */
+    .sidebar.collapse:not(.show) {
+        display: block; /* Ghi đè display: none của .collapse */
+        width: 250px !important;
+        transform: translateX(0%) !important;
+    }
+}
+
+/* CSS cho input file preview trong modal chỉnh sửa sản phẩm */
+#currentProductImagePreview {
+    border: 1px solid #dee2e6; /* Thêm border nhẹ */
+    padding: 5px; /* Thêm padding */
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+/* Chú ý: .thong-bao.success và .thong-bao.error đã có trong file gốc */
+/* Chú ý: .alert.fixed-top đã được xử lý trong app_loader.js với z-index */

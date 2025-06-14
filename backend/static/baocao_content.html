@@ -1,0 +1,44 @@
+<section id="bao-cao" class="p-4 bg-white rounded shadow-sm">
+    <h2 class="mb-4 text-primary">Báo Cáo Kho Hàng</h2>
+    <div id="thong-bao-baocao" class="thong-bao mt-4"></div>
+
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-light text-primary fw-bold">Biểu Đồ Nhập/Xuất Theo Tháng (6 tháng gần nhất)</div>
+                <div class="card-body">
+                    <canvas id="importExportChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-light text-primary fw-bold">Top 5 Sản Phẩm Tồn Kho Nhiều Nhất</div>
+                <div class="card-body">
+                    <canvas id="topProductsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mt-5 mb-3 text-primary">Báo Cáo Chi Tiết</h3>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-light text-primary fw-bold">Sản Phẩm Sắp Hết Hạn (nếu có)</div>
+                <div class="card-body">
+                    <p class="text-muted fst-italic">Tính năng này cần thêm trường 'expiry_date' vào cơ sở dữ liệu sản phẩm và logic backend tương ứng.</p>
+                    <p class="text-muted fst-italic">Hiện tại không có dữ liệu để hiển thị.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-light text-primary fw-bold">Giá Trị Tồn Kho Tổng Cộng</div>
+                <div class="card-body">
+                    <p id="total-inventory-value" class="fs-4 fw-bold text-success">Đang tính...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

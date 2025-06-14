@@ -1,0 +1,57 @@
+<section id="tong-quan" class="p-4 bg-white rounded shadow-sm">
+    <h2 class="mb-4 text-primary">Thông Tin Chung</h2>
+    <div class="row g-4 mb-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <i class="bi bi-boxes text-info fs-3 mb-2"></i>
+                    <h3 class="card-title fs-5 text-secondary">Tổng Sản Phẩm</h3>
+                    <p id="tong-san-pham" class="card-text display-4 text-primary fw-bold">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <i class="bi bi-exclamation-triangle-fill text-warning fs-3 mb-2"></i>
+                    <h3 class="card-title fs-5 text-secondary">Sắp Hết Hàng</h3>
+                    <p id="sap-het-hang" class="card-text display-4 text-warning fw-bold">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <i class="bi bi-arrow-down-square-fill text-success fs-3 mb-2"></i>
+                    <h3 class="card-title fs-5 text-secondary">Tổng Nhập (Hôm nay)</h3>
+                    <p id="tong-nhap-hom-nay" class="card-text display-4 text-success fw-bold">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <i class="bi bi-arrow-up-square-fill text-danger fs-3 mb-2"></i>
+                    <h3 class="card-title fs-5 text-secondary">Tổng Xuất (Hôm nay)</h3>
+                    <p id="tong-xuat-hom-nay" class="card-text display-4 text-danger fw-bold">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="mb-3 text-primary">Sản Phẩm Sắp Hết Hàng</h2>
+    <div class="table-responsive">
+        <table id="danh-sach-sap-het" class="table table-striped table-hover table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Mã Sản Phẩm</th>
+                    <th>Số Lượng Tồn</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+    <div id="thong-bao-main" class="thong-bao mt-4"></div>
+</section>
