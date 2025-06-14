@@ -10,8 +10,21 @@ import uuid
 import logging
 from sqlalchemy import func, cast, Numeric
 
+# BẮT ĐẦU PHẦN CODE CẦN DÁN VÀO ĐÂY
+import sys
+# Đảm bảo thư mục cha của 'backend' được thêm vào PYTHONPATH
+# Điều này giúp Python tìm thấy 'backend' như một top-level package
+# Sử dụng os.path.dirname(__file__) để lấy thư mục hiện tại (backend/)
+# sau đó os.path.abspath(os.path.join(..., '..')) để đi lên một cấp (thư mục gốc của dự án)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# KẾT THÚC PHẦN CODE CẦN DÁN VÀO ĐÂY
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+app = Flask(__name__, static_folder='static', static_url_path='')
+
+from backend.config import Config # Import tuyệt đối
+app.config.from_object(Config) # Sử dụng trực tiếp class Config
 app = Flask(__name__, static_folder='static', static_url_path='')
 from .config import Config # Import Config class từ module config trong cùng package
 app.config.from_object(Config) # Sử dụng trực tiếp class Config
