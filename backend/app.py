@@ -811,17 +811,17 @@ def get_top_products_by_quantity_report():
         logging.error(f"Lỗi khi lấy top sản phẩm tồn kho: {e}", exc_info=True)
         return jsonify({'error': 'Không thể lấy top sản phẩm tồn kho.'}), 500
 
-
 def initialize_database():
     with app.app_context():
         db.create_all()
-        if not User.query.filter_by(username='admin').first():
-            admin_user = User(username='admin')
-            admin_user.set_password('admin123')
-            db.session.add(admin_user)
-            db.session.commit()
-            logging.info("Đã tạo người dùng admin mặc định (admin/admin123). VUI LÒNG THAY ĐỔI MẬT KHẨU NÀY!")
+        # Tạm thời comment phần tạo người dùng admin để deploy trước
+        # if not User.query.filter_by(username='admin').first():
+        #     admin_user = User(username='admin', role='admin') # Dòng này gây lỗi
+        #     admin_user.set_password('admin123')
+        #     db.session.add(admin_user)
+        #     db.session.commit()
+        #     logging.info("Đã tạo người dùng admin mặc định (admin/admin123). VUI LÒNG THAY ĐỔI MẬT KHẨU NÀY!")
 
 if __name__ == '__main__':
     initialize_database()
-    app.run(debug=False, port=5000)
+    app.run(debug=False, port=os.environ.get('PORT', 5000)) # Sử dụng PORT từ env nếu có
